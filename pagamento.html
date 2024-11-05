@@ -1,0 +1,121 @@
+<html><head>
+    <meta charset="UTF-8">
+    <title>Pagamento</title>
+    <link rel="stylesheet" href="css/pagamento.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Pagamento</h1>
+        
+        <h2>Selecione o método que deseja pagar</h2>
+        <div class="payment-options">
+            <div class="payment-option" data-method="pix">
+                <input type="radio" name="payment" id="pix">
+                <label for="pix">PIX</label>
+            </div>
+            <div class="payment-option" data-method="credito">
+                <input type="radio" name="payment" id="credito">
+                <label for="credito">Crédito</label>
+            </div>
+            <div class="payment-option" data-method="dinheiro">
+                <input type="radio" name="payment" id="dinheiro">
+                <label for="dinheiro">Dinheiro</label>
+            </div>
+        </div>
+
+        <div class="total-value">
+            Valor Total: R$ 150,00
+        </div>
+
+        <div id="pixDetails" class="payment-details">
+            <p>Se já tiver cadastro no 7me, faça o login e siga os passos abaixo. Caso não tenha cadastro, clique no botão abaixo ou escaneie o QR code com o celular.</p>
+            
+            <div class="qr-code-section">
+                <div class="qr-code">
+                    <img src="imagens/qrcode.png" alt="Tutorial Image" style="width: 100%; height: 100%; object-fit: cover;">
+                </div>
+                <a href="https://giving.7me.app/guest-donation/church/1c7e892b-0334-4105-8246-9101139c19be" target="_blank">
+                    <button class="btn">Ir para o site do 7me</button>
+                </a>
+            </div>
+            
+            <ol class="steps">
+                <li>Clique na aba 'Ofertas para a minha igreja'</li>
+                <li>Selecione 'Retiro Espiritual'</li>
+                <li>Clique em 'Próximo'</li>
+                <li>Preencha com seu nome completo e e-mail (ou faça login)</li>
+                <li>Selecione a forma de pagamento PIX</li>
+                <li>Use o app do seu banco para pagar e retorne ao 7me para finalizar</li>
+                <li>O comprovante será enviado automaticamente para o e-mail fornecido</li>
+            </ol>
+            <div class="tutorial-image">
+                <img src="imagens/pgtpixcredito.png" alt="Tutorial Image" style="width: 100%; height: 100%; object-fit: cover;">
+            </div>
+        </div>
+
+        <div id="creditoDetails" class="payment-details">
+            <div class="installments">
+                <!--<label for="installment-select">Selecione o número de parcelas:</label> -->
+                <select id="installment-select">
+                    <option value="1">Selecione o número de parcelas</option>
+                    <option value="1">1x de R$ 150,00</option>
+                    <option value="2">2x de R$ 75,00</option>
+                    <option value="3">3x de R$ 50,00</option>
+                </select>
+            </div>
+        
+            <!-- Adicione a nova div aqui, logo abaixo da caixa de seleção -->
+            <div id="qrCodeSection" class="payment-details" style="display: none;">
+                <p>Se já tiver cadastro no 7me, faça o login e siga os passos abaixo. Caso não tenha cadastro, clique no botão abaixo ou escaneie o QR code com o celular.</p>
+                
+                <div class="qr-code-section">
+                    <div class="qr-code">
+                        <img src="imagens/qrcode.png" alt="Tutorial Image" style="width: 100%; height: 100%; object-fit: cover;">
+                    </div>
+                    <a href="https://giving.7me.app/guest-donation/church/1c7e892b-0334-4105-8246-9101139c19be" target="_blank" id="btnRedirect">
+                        <button class="btn">Ir para o site do 7me</button>
+                    </a>
+                </div>
+            </div>
+        
+            <ol class="steps">
+                <li>Clique na aba 'Ofertas para a minha igreja'</li>
+                <li>Selecione 'Retiro Espiritual'</li>
+                <li>Especifique o valor da parcela</li>
+                <li>Clique em 'Próximo'</li>
+                <li>Preencha com seu nome completo e e-mail (ou faça login)</li>
+                <li>Selecione a forma de pagamento Crédito</li>
+                <li>O comprovante será enviado automaticamente para o e-mail fornecido</li>
+            </ol>
+            <div class="tutorial-image">
+                <img src="imagens/pgtpixcredito.png" alt="Tutorial Image" style="width: 100%; height: 100%; object-fit: cover;">
+            </div>
+        </div>
+        
+        <div id="dinheiroDetails" class="payment-details">
+            <h3>Pagamento em Dinheiro</h3>
+            <ul>
+                <li>Realize o pagamento como uma doação de oferta, discriminando-a com o título 'Retiro Espiritual'</li>
+                <li>Tire uma foto do comprovante antes de depositá-lo na urna</li>
+                <li>Um comprovante impresso será devolvido em até 2 semanas, no mesmo envelope usado para o depósito</li>
+                <li>A equipe organizadora será notificada pela tesouraria, mas guarde seus comprovantes como garantia</li>
+            </ul>
+            <div class="tutorial-image">
+                <img src="imagens/pgtdinheiro.png" alt="Tutorial Image" style="width: 100%; height: 100%; object-fit: cover;">
+            </div>
+        </div>
+
+        <div class="contact-section">
+            <label>
+                <input type="checkbox" id="needHelp"> Caso tenha dúvidas, entre em contato com o tesoureiro
+            </label>
+            <div id="contactButton" style="display: none;">
+                <a href="https://wa.me/5511999999999" class="btn">Contatar Tesoureiro</a>
+            </div>
+        </div>
+
+        <button id="finalizarCadastro" class="btn" style="margin-top: 30px; width: 100%;">Finalizar Cadastro</button>
+    </div>
+
+    <script src="scripts/pagamento.js"></script>
+</body></html>

@@ -1,0 +1,207 @@
+<html><head></head>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulário de Inscrição</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js"></script>
+    <link rel="stylesheet" href="css/formulario.css">
+<body>
+<div class="info-container">
+    <header class="event-header">
+        <h1>Ficha de Inscrição</h1>
+        <h2>Retiro Espiritual 2025 - IASD Central Praia da Costa</h2>
+        <div class="event-image">
+            <img alt="Retiro espiritual - imagem tranquila de natureza com pessoas meditando" 
+                 src="https://mir-s3-cdn-cf.behance.net/projects/404/8e682f52086675.5903bf1831b41.jpg" 
+                 width="500" 
+                 height="200"
+                 style="max-width:100%; height:auto; border-radius:8px; margin:20px 0;">
+        </div>
+        <div class="event-details">
+            <p><strong>Data:</strong> 25 a 28 de abril de 2025</p>
+            <p><strong>Local:</strong> Sítio Riacho das Pedras</p>
+            <p><strong>Endereço:</strong> Ala curva da ferradura, zona rural - Boa Esperança, Guarapari</p>
+        </div>
+    </header>
+
+    <section class="info-section">
+        <h3>Informações Úteis</h3>
+        
+        <div class="info-block">
+            <h4>Acomodação</h4>
+            <ul>
+                <li>Todos os quartos possuem ar-condicionado;</li>
+                <li>Cada quarto comporta, em média, 4 hóspedes;</li>
+                <li>A quantidade mínima de ocupação é de 3 hóspedes por quarto;</li>
+                <li>Em caso de solteiros ou casais sem filhos, a combinação dos hóspedes levará em consideração as indicações de afinidade feitas no ato da inscrição, mas não se limitará apenas a elas;</li>
+                <li>A distribuição dos solteiros será feita em quartos masculinos e femininos;</li>
+                <li>O solteiro ou casal contratante que desejar um quarto exclusivo para si deverá pagar o equivalente a 4 inscrições, que representa a quantidade máxima de hóspedes por quarto;</li>
+                <li>Não será permitida a instalação de barracas nas dependências do sítio, nem a visitação de terceiros;</li>
+                <li>O sítio possui estacionamento próprio.</li>
+            </ul>
+        </div>
+    
+        <div class="info-block">
+            <h4>Pagamento</h4>
+            <ul>
+                <li>O valor da inscrição inclui hospedagem, alimentação e seguro (para o evento);</li>
+                <li>As inscrições se encerram no dia 31 de março de 2025 (segunda-feira);</li>
+                <li>Os pagamentos se encerram no dia 10 de abril de 2025 (quinta-feira);</li>
+                <li>O pagamento pode ser realizado de forma única ou parcelado em até 5 vezes;</li>
+                <li>A quantidade de parcelas se limitará à quantidade de meses antecedentes ao evento:</li>
+                <ul>
+                    <li>Inscrições realizadas em nov/2024 contemplarão 5 parcelas; dez/2024 -> 4 parcelas; e assim por diante;</li>
+                    <li>Inscrições realizadas em março de 2025 precisarão ser pagas de uma única vez;</li>
+                </ul>
+                <li>A garantia da inscrição se dá após o pagamento da primeira parcela;</li>
+                <li>Crianças com idade a partir de 6 anos pagam integralmente; abaixo disso recebem gratuidade;</li>
+                <li>Em caso de desistência, não haverá devolução das parcelas já pagas, mas a vaga poderá ser transferida a outra pessoa ou família indicada pelo contratante.</li>
+            </ul>
+        </div>
+    </section>
+    
+
+            <div class="acknowledgment-section">
+                <h4>Confirmação de Leitura</h4>
+                <p>Por favor, selecione uma das opções abaixo:</p>
+                <div class="radio-group">
+                    <input type="radio" id="understood" name="acknowledgment" required>
+                    <label for="understood">Li e estou de acordo com as informações acima</label>
+                </div>
+                <div class="radio-group">
+                    <input type="radio" id="needHelp" name="acknowledgment">
+                    <label for="needHelp">Preciso de maior esclarecimento</label>
+                </div>
+                <a href="https://wa.me/+5527999450744?text=Olá%20Larissa,%20gostaria%20de%20sanar%20algumas%20dúvidas%20sobre%20o%20Retiro%20Espiritual" id="whatsappButton" class="whatsapp-button" style="display: none;">
+                    Falar com Larissa no WhatsApp
+                </a>
+            </div>
+
+    </section>
+</div>
+<div class="form-container">
+        <h2>Formulário de Inscrição</h2>
+        <h4>Dados do hóspede contratante</h4>
+        <form id="inscricaoForm">
+            <div class="form-group">
+                <label>Nome Completo*</label>
+                <input type="text" id="nome" required>
+            </div>
+
+            <div class="form-group">
+                <label>Telefone*</label>
+                <input type="text" id="telefone" required>
+            </div>
+
+            <div class="form-group">
+                <label>E-mail*</label>
+                <input type="email" id="email" required>
+            </div>
+
+            <div class="form-group">
+                <label>Data de Nascimento*</label>
+                <input type="text" id="nascimento" required>
+            </div>
+
+            <div class="form-group">
+                <label>Sexo*</label>
+                <div class="radio-group">
+                    <input type="radio" id="masculino" name="sexo" value="masculino" required>
+                    <label for="masculino">Masculino</label>
+                    <input type="radio" id="feminino" name="sexo" value="feminino">
+                    <label for="feminino">Feminino</label>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label>RG*</label>
+                <input type="text" id="rg" required>
+            </div>
+
+            <div class="form-group">
+                <label>CPF*</label>
+                <input type="text" id="cpf" required>
+            </div>
+
+            <div class="form-group">
+                <label>Estado Civil*</label>
+                <select id="estadoCivil" required>
+                    <option value="">Selecione</option>
+                    <option value="solteiro">Solteiro(a)</option>
+                    <option value="casado">Casado(a)</option>
+                    <option value="divorciado">Divorciado(a)</option>
+                    <option value="viuvo">Viúvo(a)</option>
+                    <option value="outro">Outro</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label>Opções de Quarto</label>
+                <div class="checkbox-group">
+                    <label>
+                        <input type="checkbox" id="compartilharQuarto">
+                        Indicar casal de amigos para compartilhar o quarto
+                    </label>
+                    <div id="sugestaoQuartoDiv" style="display:none; margin-top:10px;">
+                        <input type="text" id="sugestaoCasal" placeholder="Nome do casal sugerido">
+                    </div>
+                </div>
+                <div class="checkbox-group">
+                    <label>
+                        <input type="checkbox" id="quartoExclusivo">
+                        Quarto exclusivo (valor de 4 inscrições)
+                    </label>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label>Endereço*</label>
+                <input type="text" id="endereco" placeholder="Rua, nº, complemento, Bairro - Cidade" required>
+            </div>
+
+            <div class="form-group">
+                <label>Modalidade de Inscrição*</label>
+                <div class="radio-group">
+                    <input type="radio" id="individual" name="modalidade" value="individual" checked required>
+                    <label for="individual">Individual</label>
+                    <input type="radio" id="coletiva" name="modalidade" value="coletiva">
+                    <label for="coletiva">Coletiva</label>
+                </div>
+            </div>
+
+            <div class="acompanhantes-container">
+                <!-- Acompanhantes will be added here -->
+            </div>
+
+            <button type="button" id="addAcompanhante" style="display: none;">Adicionar Acompanhante</button>
+            
+            <div class="event-details">
+                <h3>Resumo do Valor</h3>
+                <div id="priceBreakdown">
+                    <p>Valor por pessoa: R$ 760,00</p>
+                    <p>Número de pessoas: <span id="pessoasCount">1</span></p>
+                    <p>Valor total: R$ <span id="totalPrice">760,00</span></p>
+                </div>
+            </div>
+            <button type="submit">Ir para orientações de pagamento</button>
+        </form>
+    </div>
+
+   <!-- <div id="modalConfirmacao" class="modal">
+        <div class="modal-content">
+            <h2>Confirme seus dados</h2>
+            <div id="dadosConfirmacao"></div>
+            <div style="margin-top: 20px;">
+                <button id="btnContinuar">Continuar</button>
+                <button id="btnEditar">Editar</button>
+            </div>
+        </div>
+    </div>-->
+
+    <script src="scripts/formulario.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js"></script>
+</body>
+</html>
