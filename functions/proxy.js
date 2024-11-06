@@ -4,7 +4,7 @@ exports.handler = async function(event, context) {
     const dadosFormulario = JSON.parse(event.body);
 
     try {
-        const response = await fetch('https://hooks.zapier.com/hooks/catch/20646902/251vjp1/', {
+        const response = await fetch('https://apiencontrocpc.zapnexus.com/api.php', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(dadosFormulario)
