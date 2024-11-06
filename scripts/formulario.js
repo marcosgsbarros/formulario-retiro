@@ -470,7 +470,7 @@ function validarNascimento(campo) {
     localStorage.setItem('dadosFormulario', JSON.stringify(dadosFormulario));
     console.log(dadosFormulario);
 
-    fetch('/.netlify/functions/proxy', {
+    fetch('/functions/proxy', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
