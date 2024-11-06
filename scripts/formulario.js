@@ -470,7 +470,7 @@ function validarNascimento(campo) {
     localStorage.setItem('dadosFormulario', JSON.stringify(dadosFormulario));
     console.log(dadosFormulario);
 
-    fetch('https://hooks.zapier.com/hooks/catch/20646902/251vjp1/', {
+    fetch('/.netlify/functions/proxy', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
@@ -483,7 +483,6 @@ function validarNascimento(campo) {
         throw new Error('Erro ao enviar dados do formulário');
     }).then(data => {
         console.log(data);
-        // Redireciona para a próxima página
         window.location.href = 'pagamento.html';
     }).catch(error => {
         console.error('Erro no fetch:', error);
