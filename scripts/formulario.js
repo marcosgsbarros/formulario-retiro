@@ -470,44 +470,8 @@ function validarNascimento(campo) {
     localStorage.setItem('dadosFormulario', JSON.stringify(dadosFormulario));
     console.log(dadosFormulario);
 
-    fetch('/.netlify/functions/proxy', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(dadosFormulario)
-    }).then(response => {
-        if (response.ok) {
-            return response.json();
-        }
-        throw new Error('Erro ao enviar dados do formulário');
-    }).then(data => {
-        console.log(data);
-        window.location.href = 'pagamento.html';
-    }).catch(error => {
-        console.error('Erro no fetch:', error);
-    });
+    // Redireciona para a próxima página
+    window.location.href = 'pagamento.html';
     
-    
-    //Enviar uma requisição POST para o servidor com os dados do formulário
-    //url https://hooks.zapier.com/hooks/catch/20646902/251vjp1/
-       /* fetch('https://hooks.zapier.com/hooks/catch/20646902/251vjp1/', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(dadosFormulario)
-        }).then(response => {
-            if (response.ok) {
-                return response.json();
-            }
-            throw new Error('Erro ao enviar dados do formulário');
-        }
-        ).then(data => {
-            console.log(data);
-
-            // Redireciona para a próxima página
-            window.location.href = 'pagamento.html';
-        });*/
     });
 });

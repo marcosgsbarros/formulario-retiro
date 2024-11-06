@@ -185,6 +185,24 @@ document.addEventListener('DOMContentLoaded', function() {
             localStorage.setItem('dadosFormulario', JSON.stringify(dadosFormulario));
             console.log('Dados registrados ao finalizar cadastro:', dadosFormulario);
 
+            fetch('/.netlify/functions/proxy', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(dadosFormulario)
+            }).then(response => {
+                if (response.ok) {
+                    return response.json();
+                }
+                throw new Error('Erro ao enviar dados do formulário');
+            }).then(data => {
+                console.log(data);
+                window.location.href = 'confirmacao-inscricao.html';
+            }).catch(error => {
+                console.error('Erro no fetch:', error);
+            });
+
             // Envia os dados para o Google Sheets
             // enviarDadosParaSheets(dadosFormulario);
 
