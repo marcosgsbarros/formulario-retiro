@@ -1,5 +1,5 @@
 $(document).ready(function() {
-    let totalPriceValue = 0; // Variável global para armazenar o total
+    let totalPriceValue = 760; // Variável global para armazenar o total
     let basePrice = 760; // Valor base inicial
     let acompanhanteCount = 0; // Contador de acompanhantes
     let totalPersons = 1; // Contador de pessoas (inclui o contratante principal)
@@ -29,7 +29,7 @@ $(document).ready(function() {
                 acompanhanteCount = 0;
             }
         });
-    });    
+    }); 
 
     function updatePrice() {
         // Calcula o total com base no número de pessoas pagantes
@@ -258,16 +258,6 @@ function validarNascimento(campo) {
         `;
     }
 
-    /*$('input[name="modalidade"]').change(function() {
-        if($(this).val() === 'coletiva') {
-            $('#addAcompanhante').show();
-        } else {
-            $('#addAcompanhante').hide();
-            $('.acompanhantes-container').empty();
-            acompanhanteCount = 0;
-        }
-    });*/
-
     $('#addAcompanhante').click(function() {
 
          // Verifica se todos os campos obrigatórios dos acompanhantes existentes estão preenchidos
@@ -320,7 +310,7 @@ function validarNascimento(campo) {
         acompanhanteCount++;
         console.log(`Acompanhantes adicionados: ${acompanhanteCount}`);
         updatePrice();
-        
+
     });
     
     function verificarIdadeParaAtualizacaoDePreco($input) {
@@ -372,6 +362,10 @@ function validarNascimento(campo) {
                     console.log(`TotalPriceValue atualizado após adição: ${totalPriceValue}`);
                 }
             }
+            const installmentSelects = document.querySelectorAll('.installment-select');
+            installmentSelects.forEach(select => {
+                updateInstallmentOptions(select, totalPriceValue);
+            });
         }
     }    
     
@@ -389,6 +383,7 @@ function validarNascimento(campo) {
         $acompanhante.remove();
         acompanhanteCount--;
         updatePrice(); // Atualiza o preço ao remover um acompanhante
+
     });
     
     

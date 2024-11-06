@@ -60,9 +60,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 case 3: // Abril
                     maxParcelas = 1;
                     break;
-                default:
-                    maxParcelas = 1; // Meses após abril só permitem 1 parcela
-            }
+                }
         }
 
         // Limpa as opções existentes
@@ -81,10 +79,16 @@ document.addEventListener('DOMContentLoaded', function() {
     // Configuração das opções de pagamento
     const paymentOptions = document.querySelectorAll('.payment-option');
     const paymentDetails = document.querySelectorAll('.payment-details');
+    const installments = document.querySelector('.shared-installments');
     const qrCodeSection = document.getElementById('qrCodeSection');
     const needHelpCheckbox = document.getElementById('needHelp');
     const contactButton = document.getElementById('contactButton');
     const finalizarButton = document.getElementById('finalizarCadastro');
+
+    // Oculta a selectbox ao carregar a página
+    if (installments) {
+        installments.style.display = 'none';
+    }
 
     if (paymentOptions.length > 0 && paymentDetails.length > 0) {
         paymentOptions.forEach(option => {
@@ -110,18 +114,15 @@ document.addEventListener('DOMContentLoaded', function() {
                     console.warn(`Elemento "${method}Details" não encontrado.`);
                 }
 
+                // Mostrar a caixa de seleção de parcelas para todos os métodos
+                if (installments) {
+                    installments.style.display = 'block';
+                    atualizarOpcoesParcelas(); // Atualiza as opções de parcelas para todos os métodos
+                }
+
                 // Mostrar apenas a seção QR code para a opção de crédito
                 if (qrCodeSection) {
                     qrCodeSection.style.display = (method === 'credito') ? 'block' : 'none';
-                }
-
-                // Show/hide installments for credit
-                const installments = document.querySelector('.installments');
-                if (installments) {
-                    installments.style.display = (method === 'credito') ? 'block' : 'none';
-                    if (method === 'credito') {
-                        atualizarOpcoesParcelas(); // Atualiza as opções de parcelas ao selecionar crédito
-                    }
                 }
 
                 // Select the radio button
@@ -151,7 +152,26 @@ document.addEventListener('DOMContentLoaded', function() {
                 return;
             }
 
-            if (dadosFormulario.formaPagamento === 'credito') {
+            if (dadosFormulario.formaPagamento === 'pix') {
+                const installmentSelect = document.getElementById('installment-select');
+                if (installmentSelect && installmentSelect.value) {
+                    dadosFormulario.numeroParcelas = installmentSelect.value;
+                    dadosFormulario.valorParcela = (dadosFormulario.valorTotal / installmentSelect.value).toFixed(2);
+                } else {
+                    alert('Por favor, selecione o número de parcelas.');
+                    return;
+                }
+            }else if(dadosFormulario.formaPagamento === 'credito') {
+                const installmentSelect = document.getElementById('installment-select');
+                if (installmentSelect && installmentSelect.value) {
+                    dadosFormulario.numeroParcelas = installmentSelect.value;
+                    dadosFormulario.valorParcela = (dadosFormulario.valorTotal / installmentSelect.value).toFixed(2);
+                } else {
+                    alert('Por favor, selecione o número de parcelas.');
+                    return;
+                }
+            }
+            else if(dadosFormulario.formaPagamento === 'dinheiro') {
                 const installmentSelect = document.getElementById('installment-select');
                 if (installmentSelect && installmentSelect.value) {
                     dadosFormulario.numeroParcelas = installmentSelect.value;
@@ -166,7 +186,7 @@ document.addEventListener('DOMContentLoaded', function() {
             console.log('Dados registrados ao finalizar cadastro:', dadosFormulario);
 
             // Envia os dados para o Google Sheets
-           // enviarDadosParaSheets(dadosFormulario);
+            // enviarDadosParaSheets(dadosFormulario);
 
             // Redireciona para a próxima página
             window.location.href = 'confirmacao-inscricao.html';
