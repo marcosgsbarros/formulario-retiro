@@ -18,7 +18,7 @@ exports.handler = async function(event, context) {
     } catch (error) {
         return {
             statusCode: 500,
-            body: JSON.stringify({ message: 'Erro ao enviar dados para o Zapier', error })
+            body: JSON.stringify({ message: 'Erro ao enviar dados para a api', error })
         };
     }
 };
