@@ -1,4 +1,19 @@
 $(document).ready(function() {
+
+       // Define a data limite no fuso horário do Brasil (02/11/2024 às 23:59:59 BRT)
+       const dataLimite = new Date('2025-03-31T23:59:59-03:00');
+    
+       // Obtém a data atual no fuso horário do Brasil
+       const dataAtual = new Date();
+       const dataAtualBrasilia = new Date(dataAtual.toLocaleString("en-US", { timeZone: "America/Sao_Paulo" }));
+   
+       // Verifica se a data atual é maior que a data limite
+       if (dataAtualBrasilia > dataLimite) {
+           window.location.href = 'inscricao-encerrada.html'; // Redireciona para a página desejada
+           return; // Interrompe o carregamento do restante do código
+       }
+   
+
     let totalPriceValue = 760; // Variável global para armazenar o total
     let basePrice = 760; // Valor base inicial
     let acompanhanteCount = 0; // Contador de acompanhantes
