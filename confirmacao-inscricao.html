@@ -88,17 +88,5 @@
         console.log('Nenhum dado encontrado no localStorage.');
     }
 
-    // Função para exibir logs no console
-    function displayLogs() {
-        const logs = JSON.parse(localStorage.getItem('logs')) || [];
-        logs.forEach(log => console.log(log)); // Exibe cada log no console
-
-        // Limpa os logs do localStorage após exibir
-        localStorage.removeItem('logs');
-    }
-
-    // Exibe os logs quando a página carrega
-    document.addEventListener('DOMContentLoaded', displayLogs); // Executa a função apenas quando o DOM está totalmente carregado
-
     </script>
 </body></html>

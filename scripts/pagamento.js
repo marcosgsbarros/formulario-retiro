@@ -1,16 +1,10 @@
-function addLog(message) {
-    const logs = JSON.parse(localStorage.getItem('logs')) || [];
-    logs.push(message);
-    localStorage.setItem('logs', JSON.stringify(logs));
-}
-
 document.addEventListener('DOMContentLoaded', function() {
     // Recupera os dados do localStorage
     const dadosFormulario = JSON.parse(localStorage.getItem('dadosFormulario')) || {};
 
    // Verifica se os dados foram recuperados corretamente
    if (dadosFormulario) {
-    addLog(dadosFormulario); // Exibe os dados no console para confirmação
+    console.log(dadosFormulario); // Exibe os dados no console para confirmação
 
     // Verifica se os elementos existem antes de tentar acessá-los
     // Verifica se o elemento existe antes de tentar acessá-lo
@@ -185,26 +179,26 @@ function atualizarOpcoesParcelas() {
             }
 
             localStorage.setItem('dadosFormulario', JSON.stringify(dadosFormulario));
-            addLog('Dados registrados ao finalizar cadastro:', dadosFormulario);
+            console.log('Dados registrados ao finalizar cadastro:', dadosFormulario);
 
             try {
-                addLog('Iniciando envio dos dados do formulário para a função proxy.');
+                console.log('Iniciando envio dos dados do formulário para a função proxy.');
                 const response = fetch('/.netlify/functions/proxy', {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify(dadosFormulario)
                 });
 
-                addLog('Resposta do envio dos dados para proxy:', response);
+                console.log('Resposta do envio dos dados para proxy:', response);
 
                 if (!response.ok) throw new Error('Erro ao enviar dados do formulário');
-                addLog('Dados enviados com sucesso!');
+                console.log('Dados enviados com sucesso!');
             } catch (error) {
                 console.error('Erro no fetch:', error);
             }
 
             async function sendEmail(emailSend, nome) {
-                addLog('Iniciando função sendEmail com os dados:', { emailSend, nome });
+                console.log('Iniciando função sendEmail com os dados:', { emailSend, nome });
                 
                 try {
                     const response = await fetch('/.netlify/functions/send-email', {
@@ -213,13 +207,13 @@ function atualizarOpcoesParcelas() {
                         body: JSON.stringify({ email: emailSend, nome: nome }),
                     });
 
-                    addLog('Resposta do envio de e-mail:', response);
+                    console.log('Resposta do envio de e-mail:', response);
 
                     if (!response.ok) {
                         const errorText = await response.text();
                         console.error('Erro ao enviar email:', errorText);
                     } else {
-                        caddLog('Email enviado com sucesso!');
+                        cconsole.log('Email enviado com sucesso!');
                     }
                 } catch (error) {
                     console.error('Erro na requisição de envio de email:', error);
@@ -229,13 +223,13 @@ function atualizarOpcoesParcelas() {
             // Extração do nome e email do localStorage para enviar o email
             const nome = dadosFormulario.principal?.nome || '';
             const emailSend = dadosFormulario.principal?.email || '';
-            addLog('Nome e email extraídos para envio do email:', { nome, emailSend });
+            console.log('Nome e email extraídos para envio do email:', { nome, emailSend });
 
             sendEmail(emailSend, nome); // Aguarde o envio do e-mail
 
             // Redireciona para a próxima página apenas após todas as operações estarem concluídas
-            addLog('Redirecionando para a página de confirmação.');
-            window.location.href = 'confirmacao-inscricao.html';
+            console.log('Redirecionando para a página de confirmação.');
+            //window.location.href = 'confirmacao-inscricao.html';
 
                    });
                 }
