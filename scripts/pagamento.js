@@ -1,3 +1,21 @@
+// Polyfill para fetch em navegadores que não suportam
+if (!window.fetch) {
+    window.fetch = function(url, options) {
+        return new Promise((resolve, reject) => {
+            const xhr = new XMLHttpRequest();
+            xhr.open(options.method || 'GET', url);
+            xhr.onload = () => resolve({
+                ok: xhr.status === 200,
+                status: xhr.status,
+                json: () => Promise.resolve(JSON.parse(xhr.responseText))
+            });
+            xhr.onerror = () => reject(new Error('Network error'));
+            xhr.setRequestHeader('Content-Type', 'application/json');
+            xhr.send(options.body);
+        });
+    };
+}
+
 document.addEventListener('DOMContentLoaded', function() {
     // Recupera os dados do localStorage
     const dadosFormulario = JSON.parse(localStorage.getItem('dadosFormulario')) || {};
