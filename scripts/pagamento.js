@@ -219,29 +219,30 @@ function atualizarOpcoesParcelas() {
                 console.error('Erro no fetch:', error);
             });
 
-
-            async function sendEmail(emailSend, nome) {
+            // Função para enviar o email
+            function sendEmail(emailSend, nome) {
                 console.log('Iniciando função sendEmail com os dados:', { emailSend, nome });
                 
-                try {
-                    const response = await fetch('/.netlify/functions/send-email', {
-                        method: 'POST',
-                        headers: { 'Content-Type': 'application/json' },
-                        body: JSON.stringify({ email: emailSend, nome: nome }),
-                    });
-
+                fetch('/.netlify/functions/send-email', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ email: emailSend, nome: nome }),
+                })
+                .then(response => {
                     console.log('Resposta do envio de e-mail:', response);
-
                     if (!response.ok) {
-                        const errorText = await response.text();
-                        console.error('Erro ao enviar email:', errorText);
+                        return response.text().then(errorText => {
+                            console.error('Erro ao enviar email:', errorText);
+                        });
                     } else {
                         console.log('Email enviado com sucesso!');
                     }
-                } catch (error) {
+                })
+                .catch(error => {
                     console.error('Erro na requisição de envio de email:', error);
-                }
+                });
             }
+            
 
             // Extração do nome e email do localStorage para enviar o email
             const nome = dadosFormulario.principal?.nome || '';
