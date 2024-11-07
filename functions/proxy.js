@@ -1,8 +1,11 @@
 const fetch = require('node-fetch');
 
 exports.handler = async function(event, context) {
+    console.log('Início da função handler');
+
     // Verificação para garantir que o método HTTP é POST
     if (event.httpMethod !== 'POST') {
+        console.warn('Método HTTP não permitido:', event.httpMethod);
         return {
             statusCode: 405,
             headers: {
@@ -18,8 +21,11 @@ exports.handler = async function(event, context) {
     // Extração dos dados recebidos no corpo da requisição
     let dadosFormulario;
     try {
+        console.log('Corpo da requisição recebido:', event.body);
         dadosFormulario = JSON.parse(event.body);
+        console.log('Dados extraídos do formulário:', dadosFormulario);
     } catch (error) {
+        console.error('Erro ao parsear JSON do corpo da requisição:', error.message);
         return {
             statusCode: 400,
             headers: {
@@ -32,6 +38,7 @@ exports.handler = async function(event, context) {
 
     try {
         // Envio dos dados para a API externa
+        console.log('Enviando dados para a API externa:', dadosFormulario);
         const response = await fetch('https://apiencontrocpc.zapnexus.com/api.php', {
             method: 'POST',
             headers: {
@@ -43,9 +50,12 @@ exports.handler = async function(event, context) {
             body: JSON.stringify(dadosFormulario)
         });
 
+        console.log('Resposta da API recebida:', response.status);
+
         // Verificação se a resposta da API foi bem-sucedida
         if (!response.ok) {
             const errorData = await response.text();
+            console.error('Erro na resposta da API:', errorData);
             return {
                 statusCode: response.status,
                 headers: {
@@ -57,6 +67,7 @@ exports.handler = async function(event, context) {
         }
 
         const data = await response.json();
+        console.log('Dados recebidos da API:', data);
         return {
             statusCode: 200,
             headers: {
@@ -66,6 +77,7 @@ exports.handler = async function(event, context) {
             body: JSON.stringify(data)
         };
     } catch (error) {
+        console.error('Erro ao enviar dados para a API:', error.message);
         return {
             statusCode: 500,
             headers: {
@@ -73,9 +85,10 @@ exports.handler = async function(event, context) {
                 'Access-Control-Allow-Origin': '*',  // Header de CORS
             },
             body: JSON.stringify({ message: 'Erro ao enviar dados para a API', error: error.message })
-        };
-    }
+        };
+    }
 };
+
 
 
 

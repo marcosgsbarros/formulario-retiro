@@ -1,15 +1,20 @@
 import nodemailer from 'nodemailer';
 
 export const handler = async (event) => {
+  console.log('Início da função handler');
+  
   // Configuração de headers para permitir CORS, importante em algumas execuções serverless
   const headers = {
     'Content-Type': 'application/json',
     'Access-Control-Allow-Origin': '*',
   };
+  console.log('Headers configurados:', headers);
 
   try {
     // Parsing dos dados de entrada
+    console.log('Evento recebido:', event);
     const { email, nome } = JSON.parse(event.body);
+    console.log('Dados de entrada:', { email, nome });
 
     // Verificação de entrada
     if (!email || !nome) {
@@ -29,6 +34,7 @@ export const handler = async (event) => {
         pass: process.env.EMAIL_PASS,
       },
     });
+    console.log('Transportador de e-mail configurado com sucesso.');
 
     // Configuração do e-mail a ser enviado
     const mailOptions = {
@@ -45,6 +51,7 @@ export const handler = async (event) => {
         <p>Equipe de Organização do Retiro Espiritual 2025</p>
       `,
     };
+    console.log('Opções de e-mail configuradas:', mailOptions);
 
     // Tentativa de envio do e-mail
     const info = await transporter.sendMail(mailOptions);
@@ -60,6 +67,7 @@ export const handler = async (event) => {
 
     // Verificação específica para falha de autenticação
     if (error.response && error.response.includes('535')) {
+      console.warn('Falha de autenticação detectada.');
       return {
         statusCode: 401,
         headers,
@@ -71,9 +79,10 @@ export const handler = async (event) => {
       statusCode: 500,
       headers,
       body: JSON.stringify({ error: 'Erro ao enviar o email de confirmação.', details: error.message }),
-    };
-  }
+    };
+  }
 };
+
 
 
 /*import nodemailer from 'nodemailer';

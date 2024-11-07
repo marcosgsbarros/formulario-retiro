@@ -182,11 +182,15 @@ function atualizarOpcoesParcelas() {
             console.log('Dados registrados ao finalizar cadastro:', dadosFormulario);
 
             try {
+                console.log('Iniciando envio dos dados do formulário para a função proxy.');
                 const response = fetch('/.netlify/functions/proxy', {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify(dadosFormulario)
                 });
+
+                console.log('Resposta do envio dos dados para proxy:', response);
+
                 if (!response.ok) throw new Error('Erro ao enviar dados do formulário');
                 console.log('Dados enviados com sucesso!');
             } catch (error) {
@@ -194,6 +198,8 @@ function atualizarOpcoesParcelas() {
             }
 
             async function sendEmail(emailSend, nome) {
+                console.log('Iniciando função sendEmail com os dados:', { emailSend, nome });
+                
                 try {
                     const response = await fetch('/.netlify/functions/send-email', {
                         method: 'POST',
@@ -201,8 +207,8 @@ function atualizarOpcoesParcelas() {
                         body: JSON.stringify({ email: emailSend, nome: nome }),
                     });
 
-                    console.log(response)
-                
+                    console.log('Resposta do envio de e-mail:', response);
+
                     if (!response.ok) {
                         const errorText = await response.text();
                         console.error('Erro ao enviar email:', errorText);
@@ -217,14 +223,17 @@ function atualizarOpcoesParcelas() {
             // Extração do nome e email do localStorage para enviar o email
             const nome = dadosFormulario.principal?.nome || '';
             const emailSend = dadosFormulario.principal?.email || '';
+            console.log('Nome e email extraídos para envio do email:', { nome, emailSend });
 
             sendEmail(emailSend, nome); // Aguarde o envio do e-mail
 
             // Redireciona para a próxima página apenas após todas as operações estarem concluídas
+            console.log('Redirecionando para a página de confirmação.');
             window.location.href = 'confirmacao-inscricao.html';
-        });
-    }
-});
+
+                   });
+                }
+            });
 
 
 
