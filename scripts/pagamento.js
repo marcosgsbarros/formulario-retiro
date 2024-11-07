@@ -18,7 +18,7 @@ if (!window.fetch) {
 
 document.addEventListener('DOMContentLoaded', function() {
     // Recupera os dados do localStorage
-    const dadosFormulario = JSON.parse(localStorage.getItem('dadosFormulario')) || {};
+    const dadosFormulario = typeof localStorage !== "undefined" && JSON.parse(localStorage.getItem('dadosFormulario')) || {};
 
    // Verifica se os dados foram recuperados corretamente
    if (dadosFormulario) {
@@ -196,8 +196,12 @@ function atualizarOpcoesParcelas() {
                 }
             }
 
-            localStorage.setItem('dadosFormulario', JSON.stringify(dadosFormulario));
-            console.log('Dados registrados ao finalizar cadastro:', dadosFormulario);
+            if (typeof localStorage !== "undefined") {
+                localStorage.setItem('dadosFormulario', JSON.stringify(dadosFormulario));
+                console.log('Dados registrados ao finalizar cadastro:', dadosFormulario);
+            } else {
+                console.warn('localStorage não está disponível');
+            }            
 
             fetch('/.netlify/functions/proxy', {
                 method: 'POST',
@@ -250,9 +254,9 @@ function atualizarOpcoesParcelas() {
             console.log('Redirecionando para a página de confirmação.');
             //window.location.href = 'confirmacao-inscricao.html';
 
-            setTimeout(() => {
+            /*setTimeout(() => {
                 window.location.href = 'confirmacao-inscricao.html';
-            }, 500);  // 500 ms de atraso            
+            }, 500);  // 500 ms de atraso*/            
 
                    });
                 }

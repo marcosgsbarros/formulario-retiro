@@ -467,8 +467,12 @@ function validarNascimento(campo) {
     });
 
     // Salva no localStorage e exibe no console
-    localStorage.setItem('dadosFormulario', JSON.stringify(dadosFormulario));
-    console.log(dadosFormulario);
+    if (typeof localStorage !== "undefined") {
+        localStorage.setItem('dadosFormulario', JSON.stringify(dadosFormulario));
+        console.log('Dados registrados ao finalizar cadastro:', dadosFormulario);
+    } else {
+        console.warn('localStorage não está disponível');
+    }
 
     // Redireciona para a próxima página
     window.location.href = 'pagamento.html';
