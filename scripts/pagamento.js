@@ -1,26 +1,3 @@
-// Função para enviar o email
-async function sendEmail(emailSend, nome) {
-    try {
-      const response = await fetch('/.netlify/functions/send-email', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          email: emailSend,
-          nome: nome,
-        }),
-      });
-  
-      if (response.ok) {
-        console.log('Email enviado com sucesso!');
-      } else {
-        const errorText = await response.text();
-        console.error('Erro ao enviar email:', errorText);
-      }
-    } catch (error) {
-      console.error('Erro na requisição de envio de email:', error);
-    }
-  }
-
 document.addEventListener('DOMContentLoaded', function() {
     // Recupera os dados do localStorage
     const dadosFormulario = JSON.parse(localStorage.getItem('dadosFormulario')) || {};
@@ -210,14 +187,37 @@ document.addEventListener('DOMContentLoaded', function() {
                     'Content-Type': 'application/json'
                 },
                 body: JSON.stringify(dadosFormulario)
-            }).then(response => {
+                }).then(response => {
                 if (response.ok) {
                     return response.json();
                 }
                 throw new Error('Erro ao enviar dados do formulário');
-            }).catch(error => {
+                }).catch(error => {
                 console.error('Erro no fetch:', error);
             });
+
+            // Função para enviar o email
+            async function sendEmail(emailSend, nome) {
+                try {
+                const response = await fetch('/.netlify/functions/send-email', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                    email: emailSend,
+                    nome: nome,
+                    }),
+                });
+            
+                if (response.ok) {
+                    console.log('Email enviado com sucesso!');
+                } else {
+                    const errorText = await response.text();
+                    console.error('Erro ao enviar email:', errorText);
+                }
+                } catch (error) {
+                console.error('Erro na requisição de envio de email:', error);
+                }
+            }
 
             // Extração do nome e email do localStorage para enviar o email
             const nome = dadosFormulario.nome;
