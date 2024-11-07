@@ -2,14 +2,18 @@ import nodemailer from 'nodemailer';
 
 export const handler = async (event) => {
   try {
+    // Debug: Confirmar se as variáveis de ambiente estão acessíveis
+    console.log('EMAIL_USER:', process.env.EMAIL_USER);
+    console.log('EMAIL_PASS:', process.env.EMAIL_PASS);
+
     const { email, nome } = JSON.parse(event.body);
 
     // Configuração do transportador de e-mail usando variáveis de ambiente
     const transporter = nodemailer.createTransport({
       service: 'gmail',
       auth: {
-        user: process.env.EMAIL_USER, // Usuário (e-mail) configurado como variável de ambiente
-        pass: process.env.EMAIL_PASS, // Senha de aplicativo do Gmail como variável de ambiente
+        user: process.env.EMAIL_USER,
+        pass: process.env.EMAIL_PASS,
       },
     });
 
