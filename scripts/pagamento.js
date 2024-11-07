@@ -255,9 +255,9 @@ function atualizarOpcoesParcelas() {
             console.log('Redirecionando para a página de confirmação.');
             //window.location.href = 'confirmacao-inscricao.html';
 
-            /*setTimeout(() => {
+            setTimeout(() => {
                 window.location.href = 'confirmacao-inscricao.html';
-            }, 500);  // 500 ms de atraso*/            
+            }, 500);  // 500 ms de atraso          
 
                    });
                 }
