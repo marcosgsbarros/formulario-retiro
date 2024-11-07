@@ -1,5 +1,25 @@
-// Importa a função de envio de dados
-//import { enviarDadosParaSheets } from './api-sheets.js'
+// Função para enviar o email
+async function sendEmail(emailSend, nome) {
+    try {
+      const response = await fetch('/.netlify/functions/send-email', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          email: emailSend,
+          nome: nome,
+        }),
+      });
+  
+      if (response.ok) {
+        console.log('Email enviado com sucesso!');
+      } else {
+        const errorText = await response.text();
+        console.error('Erro ao enviar email:', errorText);
+      }
+    } catch (error) {
+      console.error('Erro na requisição de envio de email:', error);
+    }
+  }
 
 document.addEventListener('DOMContentLoaded', function() {
     // Recupera os dados do localStorage
@@ -185,19 +205,6 @@ document.addEventListener('DOMContentLoaded', function() {
             localStorage.setItem('dadosFormulario', JSON.stringify(dadosFormulario));
             console.log('Dados registrados ao finalizar cadastro:', dadosFormulario);
 
-            // Recupera os dados do localStorage e chama a função de envio de email
-            const dadosFormulario = JSON.parse(localStorage.getItem('dadosFormulario'));
-            
-            if (dadosFormulario && dadosFormulario.nome) {
-                const emailSend = dadosFormulario.email; // Substitua com o campo de e-mail correto se necessário
-                const nome = dadosFormulario.nome;
-            
-                // Chama a função para enviar o e-mail com o nome do formulário
-                sendEmail(emailSend, nome);
-            } else {
-                console.error('Nome ou email não encontrados nos dados do formulário.');
-            }
-
             fetch('/.netlify/functions/proxy', {
                 method: 'POST',
                 headers: {
@@ -216,28 +223,13 @@ document.addEventListener('DOMContentLoaded', function() {
                 console.error('Erro no fetch:', error);
             });
 
-            // Função para enviar o email
-            async function sendEmail(emailSend, nome) {
-                try {
-                const response = await fetch('/.netlify/functions/send-email', {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({
-                    email: emailSend,
-                    nome: nome,
-                    }),
-                });
-            
-                if (response.ok) {
-                    console.log('Email enviado com sucesso!');
-                } else {
-                    const errorText = await response.text();
-                    console.error('Erro ao enviar email:', errorText);
-                }
-                } catch (error) {
-                console.error('Erro na requisição de envio de email:', error);
-                }
-            }
+            // Extração do nome e email do localStorage para enviar o email
+            const nome = dadosFormulario.nome;
+            const emailSend = dadosFormulario.email;
+
+            // Chama a função para enviar o email com nome e email do formulário
+            sendEmail(emailSend, nome);
+
 
             // Redireciona para a próxima página
             window.location.href = 'confirmacao-inscricao.html';
