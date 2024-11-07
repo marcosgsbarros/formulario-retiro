@@ -77,7 +77,6 @@
         </div>
         <a href="https://wa.me/+5527999450744?text=Olá%20Larissa,%20gostaria%20de%20sanar%20algumas%20dúvidas%20sobre%20o%20Retiro%20Espiritual" target="_blank" class="btn">Contatar Organizadores</a>
     </div>
-    <div id="logsContainer"></div>
     <script>
     // Recupera os dados do localStorage
     const dadosFormulario = JSON.parse(localStorage.getItem('dadosFormulario'));
@@ -89,16 +88,10 @@
         console.log('Nenhum dado encontrado no localStorage.');
     }
 
-      // Função para exibir logs
+    // Função para exibir logs no console
     function displayLogs() {
-        const logsContainer = document.getElementById('logsContainer'); // Corrigido o ID aqui
         const logs = JSON.parse(localStorage.getItem('logs')) || [];
-        
-        logs.forEach(log => {
-            const logEntry = document.createElement('div');
-            logEntry.textContent = log;
-            logsContainer.appendChild(logEntry);
-        });
+        logs.forEach(log => console.log(log)); // Exibe cada log no console
 
         // Limpa os logs do localStorage após exibir
         localStorage.removeItem('logs');
@@ -106,5 +99,6 @@
 
     // Exibe os logs quando a página carrega
     document.addEventListener('DOMContentLoaded', displayLogs); // Executa a função apenas quando o DOM está totalmente carregado
+
     </script>
 </body></html>
