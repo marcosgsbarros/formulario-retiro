@@ -220,8 +220,9 @@ document.addEventListener('DOMContentLoaded', function() {
             }
 
             // Extração do nome e email do localStorage para enviar o email
-            const nome = dadosFormulario.nome;
-            const emailSend = dadosFormulario.email;
+            const nome = dadosFormulario.principal.nome;
+            const emailSend = dadosFormulario.principal.email;
+
 
             // Chama a função para enviar o email com nome e email do formulário
             sendEmail(emailSend, nome);

@@ -2,9 +2,6 @@ import nodemailer from 'nodemailer';
 
 export const handler = async (event) => {
   try {
-    // Debug: Confirmar se as variáveis de ambiente estão acessíveis
-    console.log('EMAIL_USER:', process.env.EMAIL_USER);
-    console.log('EMAIL_PASS:', process.env.EMAIL_PASS);
 
     const { email, nome } = JSON.parse(event.body);
 
