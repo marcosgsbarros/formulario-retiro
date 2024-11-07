@@ -7,6 +7,7 @@ export const handler = async (event) => {
   const headers = {
     'Content-Type': 'application/json',
     'Access-Control-Allow-Origin': '*',
+    'Access-Control-Allow-Headers': 'Content-Type'
   };
   console.log('Headers configurados:', headers);
 

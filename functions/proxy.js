@@ -12,7 +12,8 @@ exports.handler = async function(event, context) {
                 'Allow': 'POST',
                 'Content-Type': 'application/json',
                 'Access-Control-Allow-Origin': '*',  // Header de CORS
-                'Access-Control-Allow-Methods': 'POST'  // Método permitido
+                'Access-Control-Allow-Methods': 'POST',  // Método permitido
+                'Access-Control-Allow-Headers': 'Content-Type'
             },
             body: JSON.stringify({ message: 'Método não permitido. Use POST.' })
         };
