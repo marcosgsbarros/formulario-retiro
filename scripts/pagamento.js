@@ -77,9 +77,6 @@ document.addEventListener('DOMContentLoaded', function() {
                 case 2: // Março
                     maxParcelas = 2;
                     break;
-                case 3: // Abril
-                    maxParcelas = 1;
-                    break;
                 }
         }
 
