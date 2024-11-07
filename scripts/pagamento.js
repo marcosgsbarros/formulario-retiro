@@ -4,9 +4,6 @@ function addLog(message) {
     localStorage.setItem('logs', JSON.stringify(logs));
 }
 
-// Exemplo de como usar a função addLog() em vez de console.log
-addLog('Dados registrados ao finalizar cadastro: ' + JSON.stringify(dadosFormulario));
-
 document.addEventListener('DOMContentLoaded', function() {
     // Recupera os dados do localStorage
     const dadosFormulario = JSON.parse(localStorage.getItem('dadosFormulario')) || {};
