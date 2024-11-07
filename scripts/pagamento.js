@@ -181,21 +181,22 @@ function atualizarOpcoesParcelas() {
             localStorage.setItem('dadosFormulario', JSON.stringify(dadosFormulario));
             console.log('Dados registrados ao finalizar cadastro:', dadosFormulario);
 
-            try {
-                console.log('Iniciando envio dos dados do formulário para a função proxy.');
-                const response = fetch('/.netlify/functions/proxy', {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify(dadosFormulario)
-                });
-
+            fetch('/.netlify/functions/proxy', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(dadosFormulario)
+            })
+            .then(response => {
                 console.log('Resposta do envio dos dados para proxy:', response);
-
-                if (!response.ok) throw new Error('Erro ao enviar dados do formulário');
+                if (!response.ok) {
+                    throw new Error('Erro ao enviar dados do formulário');
+                }
                 console.log('Dados enviados com sucesso!');
-            } catch (error) {
+            })
+            .catch(error => {
                 console.error('Erro no fetch:', error);
-            }
+            });
+
 
             async function sendEmail(emailSend, nome) {
                 console.log('Iniciando função sendEmail com os dados:', { emailSend, nome });
