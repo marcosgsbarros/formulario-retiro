@@ -215,9 +215,6 @@ document.addEventListener('DOMContentLoaded', function() {
                     return response.json();
                 }
                 throw new Error('Erro ao enviar dados do formulário');
-            }).then(data => {
-                console.log(data);
-                window.location.href = 'confirmacao-inscricao.html';
             }).catch(error => {
                 console.error('Erro no fetch:', error);
             });
