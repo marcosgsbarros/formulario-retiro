@@ -1,5 +1,5 @@
 import nodemailer from 'nodemailer';
-import dotenv from 'dotenv';
+//import dotenv from 'dotenv';
 
 dotenv.config(); // Carrega as variáveis de ambiente do arquivo .env
 
@@ -11,8 +11,8 @@ export const handler = async (event) => {
     const transporter = nodemailer.createTransport({
       service: 'gmail',
       auth: {
-        user: process.env.EMAIL_USER, // Usuário (e-mail)
-        pass: process.env.EMAIL_PASS, // Senha de aplicativo do Gmail
+        user: "retiroespiritual2025cpc@gmail.com", // Usuário (e-mail)
+        pass: "gbnizqivhyvtuavg", // Senha de aplicativo do Gmail
       },
     });
 
