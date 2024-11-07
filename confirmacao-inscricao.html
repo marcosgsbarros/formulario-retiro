@@ -87,5 +87,21 @@
     } else {
         console.log('Nenhum dado encontrado no localStorage.');
     }
+
+     // Função para exibir logs
+     function displayLogs() {
+            const logsContainer = document.getElementById('logs');
+            const logs = JSON.parse(localStorage.getItem('logs')) || [];
+            logs.forEach(log => {
+                const logEntry = document.createElement('div');
+                logEntry.textContent = log;
+                logsContainer.appendChild(logEntry);
+            });
+            // Limpa os logs do localStorage após exibir
+            localStorage.removeItem('logs');
+        }
+
+        // Exibe os logs quando a página carrega
+        displayLogs();
     </script>
 </body></html>
