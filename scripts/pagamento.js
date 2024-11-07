@@ -32,6 +32,7 @@ document.addEventListener('DOMContentLoaded', function() {
         // Verifica se os elementos existem antes de tentar acessá-los
         const valorTotalExibidoElement = document.querySelector('.total-value'); // Usando a classe
         if (valorTotalExibidoElement) {
+            valorTotalExibidoElement.style.display = 'block';
             valorTotalExibidoElement.innerText = `Valor Total: R$ ${dadosFormulario.valorTotal}`;
         } else {
             console.warn('Elemento com a classe "total-value" não encontrado.');
