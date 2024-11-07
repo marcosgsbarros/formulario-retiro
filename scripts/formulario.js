@@ -14,8 +14,8 @@ $(document).ready(function() {
        }
    
 
-    let totalPriceValue = 760; // Variável global para armazenar o total
-    let basePrice = 760; // Valor base inicial
+    let totalPriceValue = 680; // Variável global para armazenar o total
+    let basePrice = 680; // Valor base inicial
     let acompanhanteCount = 0; // Contador de acompanhantes
     let totalPersons = 1; // Contador de pessoas (inclui o contratante principal)
     let freeAcompanhantes = 0; // Contador de acompanhantes com gratuidade
