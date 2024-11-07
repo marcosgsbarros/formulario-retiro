@@ -30,13 +30,14 @@ document.addEventListener('DOMContentLoaded', function() {
         console.log(dadosFormulario); // Exibe os dados no console para confirmação
 
         // Verifica se os elementos existem antes de tentar acessá-los
-        const valorTotalExibidoElement = document.querySelector('.total-value'); // Usando a classe
-        if (valorTotalExibidoElement) {
-            valorTotalExibidoElement.style.display = 'block';
-            valorTotalExibidoElement.innerText = `Valor Total: R$ ${dadosFormulario.valorTotal}`;
-        } else {
-            console.warn('Elemento com a classe "total-value" não encontrado.');
-        }
+        // Verifica se o elemento existe antes de tentar acessá-lo
+    const valorTotalExibidoElement = document.querySelector('.total-value');
+    if (valorTotalExibidoElement) {
+        valorTotalExibidoElement.innerText = `Valor Total: R$ ${dadosFormulario.valorTotal}`;
+    } else {
+        console.warn('Elemento com a classe "total-value" não encontrado.');
+    }
+
     } else {
         console.error('Nenhum dado encontrado no localStorage.');
     }
