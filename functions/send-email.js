@@ -1,24 +1,21 @@
 import nodemailer from 'nodemailer';
-//import dotenv from 'dotenv';
-
-dotenv.config(); // Carrega as variáveis de ambiente do arquivo .env
 
 export const handler = async (event) => {
   try {
     const { email, nome } = JSON.parse(event.body);
 
-    // Configuração do transportador de e-mail
+    // Configuração do transportador de e-mail usando variáveis de ambiente
     const transporter = nodemailer.createTransport({
       service: 'gmail',
       auth: {
-        user: 'retiroespiritual2025cpc@gmail.com', // Usuário (e-mail)
-        pass: 'gbni zqiv hyvt uavg', // Senha de aplicativo do Gmail
+        user: process.env.EMAIL_USER, // Usuário (e-mail) configurado como variável de ambiente
+        pass: process.env.EMAIL_PASS, // Senha de aplicativo do Gmail como variável de ambiente
       },
     });
 
     // Configuração do e-mail a ser enviado
     const mailOptions = {
-      from: 'retiroespiritual2025cpc@gmail.com',
+      from: process.env.EMAIL_USER,
       to: email,
       subject: 'Confirmação de Inscrição para o Retiro Espiritual 2025',
       html: `
@@ -49,6 +46,6 @@ export const handler = async (event) => {
     return {
       statusCode: 500,
       body: JSON.stringify({ error: 'Erro ao enviar o email de confirmação.' }),
-    };
-  }
+    };
+  }
 };
