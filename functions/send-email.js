@@ -24,11 +24,7 @@ export const handler = async (event) => {
         <p>Estamos felizes em confirmar a sua inscrição para o <strong>Retiro Espiritual 2025</strong>.</p>
         <p>Esperamos que este evento seja uma experiência transformadora para você, repleta de momentos de reflexão, aprendizado e comunhão.</p>
         <p>Se tiver alguma dúvida, entre em contato com a Larissa da organização.</p>
-        <br>
-        <a href="https://wa.me/+5527999450744?text=Olá%20Larissa,%20gostaria%20de%20sanar%20algumas%20dúvidas%20sobre%20o%20Retiro%20Espiritual" target="_blank" class="button">
-          Falar com Larissa no WhatsApp
-        </a>
-        <br>
+        <p>Falar com Larissa no WhatsApp</p> <a href="https://bit.ly/retiro-espiritual2025"></a>
         <p>Atenciosamente,</p>
         <p>Equipe de Organização do Retiro Espiritual 2025</p>
       `,
