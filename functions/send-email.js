@@ -8,14 +8,14 @@ export const handler = async (event) => {
     const transporter = nodemailer.createTransport({
       service: 'gmail',
       auth: {
-        user: 'imc.calculator.app@gmail.com',
-        pass: 'tekh oxut jmka qgvy',
+        user: process.env.EMAIL_USER, // Usuário (e-mail) configurado como variável de ambiente
+        pass: process.env.EMAIL_PASS, // Senha de aplicativo do Gmail como variável de ambiente
       },
     });
 
     // Configuração do e-mail a ser enviado
     const mailOptions = {
-      from: 'imc.calculator.app@gmail.com',
+      from: process.env.EMAIL_USER,
       to: email,
       subject: 'Confirmação de Inscrição para o Retiro Espiritual 2025',
       html: `
