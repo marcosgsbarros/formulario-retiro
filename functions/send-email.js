@@ -18,7 +18,7 @@ export const handler = async (event) => {
 
     // Configuração do e-mail a ser enviado
     const mailOptions = {
-      from: process.env.EMAIL_USER,
+      from: 'retiroespiritual2025cpc@gmail.com',
       to: email,
       subject: 'Confirmação de Inscrição para o Retiro Espiritual 2025',
       html: `
