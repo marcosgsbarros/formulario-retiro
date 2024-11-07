@@ -185,6 +185,19 @@ document.addEventListener('DOMContentLoaded', function() {
             localStorage.setItem('dadosFormulario', JSON.stringify(dadosFormulario));
             console.log('Dados registrados ao finalizar cadastro:', dadosFormulario);
 
+            // Recupera os dados do localStorage e chama a função de envio de email
+            const dadosFormulario = JSON.parse(localStorage.getItem('dadosFormulario'));
+            
+            if (dadosFormulario && dadosFormulario.nome) {
+                const emailSend = dadosFormulario.email; // Substitua com o campo de e-mail correto se necessário
+                const nome = dadosFormulario.nome;
+            
+                // Chama a função para enviar o e-mail com o nome do formulário
+                sendEmail(emailSend, nome);
+            } else {
+                console.error('Nome ou email não encontrados nos dados do formulário.');
+            }
+
             fetch('/.netlify/functions/proxy', {
                 method: 'POST',
                 headers: {
@@ -224,19 +237,6 @@ document.addEventListener('DOMContentLoaded', function() {
                 } catch (error) {
                 console.error('Erro na requisição de envio de email:', error);
                 }
-            }
-            
-            // Recupera os dados do localStorage e chama a função de envio de email
-            const dadosFormulario = JSON.parse(localStorage.getItem('dadosFormulario'));
-            
-            if (dadosFormulario && dadosFormulario.nome) {
-                const emailSend = dadosFormulario.email; // Substitua com o campo de e-mail correto se necessário
-                const nome = dadosFormulario.nome;
-            
-                // Chama a função para enviar o e-mail com o nome do formulário
-                sendEmail(emailSend, nome);
-            } else {
-                console.error('Nome ou email não encontrados nos dados do formulário.');
             }
 
             // Redireciona para a próxima página
