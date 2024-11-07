@@ -213,7 +213,7 @@ function atualizarOpcoesParcelas() {
                         const errorText = await response.text();
                         console.error('Erro ao enviar email:', errorText);
                     } else {
-                        cconsole.log('Email enviado com sucesso!');
+                        console.log('Email enviado com sucesso!');
                     }
                 } catch (error) {
                     console.error('Erro na requisição de envio de email:', error);
