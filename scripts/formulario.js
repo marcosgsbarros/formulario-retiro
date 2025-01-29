@@ -52,7 +52,7 @@ $(document).ready(function() {
 
         // Verifica se o quarto exclusivo está marcado
         if ($('#quartoExclusivo').is(':checked')) {
-            totalPriceValue = basePrice * 4; // Quarto exclusivo = 4 registros
+            totalPriceValue = basePrice * 3; // Quarto exclusivo = 3 registros
             total = totalPersons + acompanhanteCount - freeAcompanhantes
             if (total > 4){
                 totalPriceValue += basePrice;
