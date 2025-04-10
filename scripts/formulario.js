@@ -1,7 +1,7 @@
 $(document).ready(function() {
 
        // Define a data limite no fuso horário do Brasil (02/11/2024 às 23:59:59 BRT)
-       const dataLimite = new Date('2025-03-31T23:59:59-03:00');
+       const dataLimite = new Date('2025-04-24T23:59:59-03:00');
     
        // Obtém a data atual no fuso horário do Brasil
        const dataAtual = new Date();
